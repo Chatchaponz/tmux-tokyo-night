@@ -42,7 +42,13 @@ function generate_inactive_window_string() {
     local separator_internal="#[bg=${PALLETE['dark3']},fg=${PALLETE['dark5']}]${left_separator:?}#[none]"
     local separator_end="#[bg=default,fg=${PALLETE['dark3']}]${left_separator:?}#[none]"
   else
-    local separator_start="#[bg=${PALLETE['dark5']},fg=${PALLETE['bg_highlight']}]${left_separator:?}#[none]"
+    # added
+    left_separator_inverse=$(get_tmux_option "@theme_transparent_left_separator_inverse" "")
+    #
+    # local separator_start="#[bg=${PALLETE['dark5']},fg=${PALLETE['bg_highlight']}]${left_separator:?}#[none]"
+    # local separator_internal="#[bg=${PALLETE['dark3']},fg=${PALLETE['dark5']}]${left_separator:?}#[none]"
+    # local separator_end="#[bg=${PALLETE[bg_highlight]},fg=${PALLETE['dark3']}]${left_separator:?}#[none]"
+    local separator_start="#[fg=${PALLETE['dark5']},bg=${PALLETE['bg_highlight']}]${left_separator_inverse:?}#[bg=${PALLETE['dark5']}]"
     local separator_internal="#[bg=${PALLETE['dark3']},fg=${PALLETE['dark5']}]${left_separator:?}#[none]"
     local separator_end="#[bg=${PALLETE[bg_highlight]},fg=${PALLETE['dark3']}]${left_separator:?}#[none]"
   fi
@@ -69,10 +75,13 @@ function generate_active_window_string() {
     separator_internal="#[bg=${PALLETE['blue1']},fg=${PALLETE['blue']}]${left_separator:?}#[none]"
     separator_end="#[bg=default,fg=${PALLETE['blue1']}]${left_separator:?}#[none]"
   else
+    # added
+    left_separator_inverse=$(get_tmux_option "@theme_transparent_left_separator_inverse" "")
+
     # separator_start="#[bg=${PALLETE['magenta']},fg=${PALLETE['bg_highlight']}]${left_separator:?}#[none]"
     # separator_internal="#[bg=${PALLETE['purple']},fg=${PALLETE['magenta']}]${left_separator:?}#[none]"
     # separator_end="#[bg=${PALLETE[bg_highlight]},fg=${PALLETE['purple']}]${left_separator:?}#[none]"
-    separator_start="#[bg=${PALLETE['blue']},fg=${PALLETE['bg_highlight']}]${left_separator:?}#[none]"
+    separator_start="#[fg=${PALLETE['blue']},bg=${PALLETE['bg_highlight']}]${left_separator_inverse:?}#[bg=${PALLETE['blue']}]"
     separator_internal="#[bg=${PALLETE['blue1']},fg=${PALLETE['blue']}]${left_separator:?}#[none]"
     separator_end="#[bg=${PALLETE[bg_highlight]},fg=${PALLETE['blue1']}]${left_separator:?}#[none]"
   fi

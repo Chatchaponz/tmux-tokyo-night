@@ -20,9 +20,9 @@ right_separator=$(get_tmux_option "@theme_right_separator" "")
 icon_right_separator=$(get_tmux_option "@theme_plugin_icon_right_separator" "")
 transparent=$(get_tmux_option "@theme_transparent_status_bar" "false")
 
-if [ "$transparent" = "true" ]; then
-  right_separator_inverse=$(get_tmux_option "@theme_transparent_right_separator_inverse" "")
-fi
+# if [ "$transparent" = "true" ]; then
+right_separator_inverse=$(get_tmux_option "@theme_transparent_right_separator_inverse" "")
+# fi
 
 window_with_activity_style=$(get_tmux_option "@theme_window_with_activity_style" "italics")
 window_status_bell_style=$(get_tmux_option "@theme_status_bell_style" "bold")
@@ -103,10 +103,14 @@ if [ "$theme_disable_plugins" -ne 1 ]; then
         # separator_icon_end="#[fg=${accent_color},bg=${accent_color_icon}]${right_separator}#[none]"
         separator_end="#[fg=${accent_color},bg=default]${right_separator_inverse}#[none]"
       else
+        # separator_icon_start="#[fg=${accent_color_icon},bg=${PALLETE[bg_highlight]}]${right_separator}#[none]"
+        # separator_icon_end="#[fg=${accent_color},bg=${accent_color_icon}]${icon_right_separator}#[none]"
+        # # separator_icon_end="#[fg=${accent_color},bg=${accent_color_icon}]${right_separator}#[none]"
+        # separator_end="#[fg=${PALLETE[bg_highlight]},bg=${accent_color}]${right_separator}#[none]"
         separator_icon_start="#[fg=${accent_color_icon},bg=${PALLETE[bg_highlight]}]${right_separator}#[none]"
         separator_icon_end="#[fg=${accent_color},bg=${accent_color_icon}]${icon_right_separator}#[none]"
         # separator_icon_end="#[fg=${accent_color},bg=${accent_color_icon}]${right_separator}#[none]"
-        separator_end="#[fg=${PALLETE[bg_highlight]},bg=${accent_color}]${right_separator}#[none]"
+        separator_end="#[bg=${PALLETE[bg_highlight]},fg=${accent_color}]${right_separator_inverse}#[none]"
       fi
 
       plugin_output_string=""
